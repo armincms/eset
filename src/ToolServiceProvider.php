@@ -1,12 +1,9 @@
 <?php
 
 namespace Armincms\Eset;
-
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\ServiceProvider;
-use Laravel\Nova\Events\ServingNova;
-use Laravel\Nova\Nova;
-use Armincms\Eset\Http\Middleware\Authorize;
+ 
+use Illuminate\Support\ServiceProvider; 
+use Laravel\Nova\Nova; 
 
 class ToolServiceProvider extends ServiceProvider
 {
@@ -16,41 +13,33 @@ class ToolServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
+    {  
+        $this->loadMigrationsFrom( __DIR__.'/../database/migrations');
+        $this->mergeConfigFrom( __DIR__.'/../config/operators.php', 'licence-management.operators.eset');
+        $this->mergeConfigFrom( __DIR__.'/../config/ftp.php', 'filesystems.disks.eset');  
+
+        Nova::serving([$this, 'servingNova']);
+
+        $this->map(); 
+    }  
+
+    public function map()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'eset');
-
-        $this->app->booted(function () {
-            $this->routes();
-        });
-
-        Nova::serving(function (ServingNova $event) {
-            //
-        });
+        $this
+            ->app['router']   
+            ->namespace(__NAMESPACE__.'\Http\Controllers')  
+            ->prefix('api')
+            ->group(function($router) {
+                $router->match('get', 'eset/setting', 'SettingController@handle');
+                $router->match('get', 'eset/validate', 'ValidationController@handle'); 
+                $router->match('post', 'eset/device', 'DeviceController@handle');  
+            });
     }
 
-    /**
-     * Register the tool's routes.
-     *
-     * @return void
-     */
-    protected function routes()
+    public function servingNova()
     {
-        if ($this->app->routesAreCached()) {
-            return;
-        }
-
-        Route::middleware(['nova', Authorize::class])
-                ->prefix('nova-vendor/eset')
-                ->group(__DIR__.'/../routes/api.php');
-    }
-
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
+        Nova::resources([
+            Eset::class,
+        ]);
     }
 }
