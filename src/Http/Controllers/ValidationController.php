@@ -26,12 +26,13 @@ class ValidationController extends Controller
             'username'  => Decoder::hexDecode(data_get($credit, 'data.username')),
             'password'  => Decoder::decode(data_get($credit, 'data.password')), 
             'expiresOn' => $credit->expires_on->toDateTimeString(),
+            'startedAt' => optional($credit->startedAt())->toDateTimeString(), 
             'daysLeft'  => $credit->daysLeft(),
             'users'     => $credit->license->users,
             'inUse'     => $devices->count(),
-            'startedAt' => optional($credit->startedAt())->toDateTimeString(),
-            'failServer'=> $request->option('fail_server'),
-            'servers'   => (array) $request->option('servers'), 
+            'fileServer'=> $request->servers($request->getOperator(), 'file_server'),
+            'failServer'=> $request->servers($request->getOperator(), 'fails_server'),
+            'servers'   => $request->servers($request->getOperator(), 'servers'), 
             'serials'   => $devices->pluck('device_id')->all(), 
         ];  
     }   

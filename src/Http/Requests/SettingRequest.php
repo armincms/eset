@@ -6,5 +6,5 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class SettingRequest extends EsetRequest
 {
-     
+     use IntractsWithProduct;
 }

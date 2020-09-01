@@ -4,13 +4,14 @@ namespace Armincms\Eset;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Armincms\Bios\Resource;
-use Laravel\Nova\Panel; 
 use Laravel\Nova\Fields\{Heading, Text, Number, Select, Boolean, Password}; 
-use Inspheric\Fields\Url;
-use Armincms\Json\Json;
+use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Panel; 
 use Whitecube\NovaFlexibleContent\Flexible;
+use Inspheric\Fields\Url;
+use NovaItemsField\Items;
+use Armincms\Bios\Resource;
+use Armincms\Json\Json;
 
 class Eset extends Resource
 { 
@@ -63,7 +64,7 @@ class Eset extends Resource
             ])),
 
             new Panel('FTP', [
-                tap(Flexible::make('FTP', 'est_ftp'), function ($flexible) {
+                tap(Flexible::make('FTP', 'eset_ftp'), function ($flexible) {
 
                     $flexible
                         ->addLayout(__('Default'), 'default', $this->ftpFields(true))
@@ -86,18 +87,18 @@ class Eset extends Resource
                 tap(Flexible::make('Servers', 'est_servers'), function ($flexible) {
 
                     $flexible
-                        ->addLayout(__('Default'), 'default', $this->ftpFields(true))
+                        ->addLayout(__('Default'), 'default', $this->serverFields())
                         ->collapsed(true)
                         ->required()
-                        ->button(__('FTP Connection Configuration'))
+                        ->button(__('Servers Configuration'))
                         ->rules(['required', function($attribute, $value, $fail) {
                             collect($value)->where('layout', 'default')->first() ||
-                            $fail(__('You should specify default configurations'));
+                            $fail(__('You should specify default servers'));
                         }]); 
 
                     collect(config('licence-management.operators.eset.drivers'))
                         ->each(function($driver, $name) use ($flexible) { 
-                            $flexible->addLayout($driver['title'] ?? $name, $name, $this->ftpFields());
+                            $flexible->addLayout($driver['title'] ?? $name, $name, $this->serverFields());
                         }); 
                 }),
             ]),
@@ -148,5 +149,22 @@ class Eset extends Resource
                     ->rules('required'),
             ])->ignoreCasting()->saveHistory()->toArray(),
         ); 
+    }
+
+    public function serverFields()
+    {
+        return [
+            Url::make(__('File Server'), 'file_server'),
+
+            Url::make(__('Fails Server'), 'fails_server'),
+
+            Items::make(__('Servers'), 'servers')
+                ->inputType('url')
+                ->listFirst()
+                ->draggable()
+                ->resolveUsing(function($value) {
+                    return is_array($value) ? $value : (array) json_decode($value, true);
+                }),
+        ];
     }
 }

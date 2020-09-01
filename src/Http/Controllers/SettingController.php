@@ -18,14 +18,14 @@ class SettingController extends Controller
         return [ 
             'username'=> $request->option('username'),   
             'password'=> $request->option('password'),   
-            'file_server'=> $request->option('file_server'),   
+            'file_server'=> $request->servers($request->getOperator(), 'file_server'),   
             'ftp' => [
-                'server'=> $request->ftp('host'), 
-                'path'=> $request->ftp('path'), 
+                'server'=> $request->ftp($request->getOperator(), 'host'), 
+                'path'=> $request->ftp($request->getOperator(), 'path'), 
             ],
             'ftp2' => [
-                'username'=> $request->ftp2('username'),   
-                'password'=> $request->ftp2('password'),  
+                'username'=> $request->ftp2($request->getOperator(), 'username'),   
+                'password'=> $request->ftp2($request->getOperator(), 'password'),  
             ] 
         ];
          

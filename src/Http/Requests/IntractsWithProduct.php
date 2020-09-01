@@ -19,6 +19,11 @@ trait IntractsWithProduct
 
     public function hasValidOperator(Credit $credit)
     {
-        return $this->get(static::OPERATOR_KEY) === data_get($credit->load('license.product'), 'license.product.driver');
+        return $this->getOperator() === data_get($credit->load('license.product'), 'license.product.driver');
+    }
+
+    public function getOperator()
+    {
+        return $this->get(static::OPERATOR_KEY) ?: 'default';
     }
 }
