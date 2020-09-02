@@ -16,7 +16,7 @@ class CreateEsetDevicesTable extends Migration
         Schema::create('eset_devices', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('device_id')->index();
-            $table->string('credit_id')->index();
+            $table->unsignedBigInteger('credit_id')->index();
             $table->json('data')->nullable();  
             $table->timestamps();    
             $table->softDeletes();
