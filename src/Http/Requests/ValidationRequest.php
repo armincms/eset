@@ -10,13 +10,8 @@ class ValidationRequest extends EsetRequest
     public function findCreditOrFail()
     {
     	return tap(parent::findCreditOrFail(), function($credit) {
-    		abort_if(! $this->passesProductRestriction($credit), 403, __('Invalid Product'));
-    		abort_if(! $this->passesDeviceRestriction($credit), 403, __('Invalid Devaice'));
+    		abort_if(! $this->passesProductRestriction($credit), 400, __('Requested product not support'));
+    		abort_if(! $this->passesDeviceRestriction($credit), 403, __('Requested credit is fully filled'));
     	});
     }
-    
-    public function getDeviceId()
-    {
-    	return $this->get('device_id');
-    } 
 }

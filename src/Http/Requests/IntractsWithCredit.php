@@ -9,8 +9,8 @@ trait IntractsWithCredit
     public function findCreditOrFail()
     {
         return tap($this->findCredit(), function($credit) {  
-            abort_if(is_null($credit), 404, __('This credit not exists'));
-            abort_if($credit->isExpired(), 404, __('This credit is expired'));
+            abort_if(is_null($credit), 404, __('Requested credit not found'));
+            abort_if($credit->isExpired(), 410, __('Requested credit is expired'));
         });
     }
 

@@ -24,7 +24,7 @@ abstract class EsetRequest extends FormRequest
      */
     public function authorize()
     {  
-        return  /*$this->getHost() == $this->option('_api_doamin_') &&*/
+        return  $this->getHost() == $this->option('_api_doamin_') &&
                 $this->get('apikey') == $this->option('eset_apikey') &&
                 $this->expectsJson();
     }
