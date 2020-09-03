@@ -59,7 +59,7 @@ Easy License ESET Antivirus
 
 ## Http response codes
 
-400: Invalid product
+400: Invalid operator
 
 401: Invalid `apikey` or `domain` or `accept-value`
 
