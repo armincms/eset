@@ -8,11 +8,11 @@ Easy License ESET Antivirus
 
 * Validation Request
 
-	get: `{api.domain.com}/eset/validate?apikey=your-api-key&username=your-username&password=your-password&device_id=your-device-id&operator=your-product` 
+	get: `{api.domain.com}/eset/validate?apikey=your-api-key & username=your-username & password=your-password & device_id=your-device-id & operator=your-product` 
 
 * Device Request
 
-	post: `{api.domain.com}/eset/device?apikey=your-api-key&username=your-username&password=your-password&device_id=your-device-id&operator=your-product&params[0][your-key]=your-value&params[1][your-key]=your-value`
+	post: `{api.domain.com}/eset/device?apikey=your-api-key & username=your-username & password=your-password & device_id=your-device-id & operator=your-product & params[0][your-key]=your-value & params[1][your-key]=your-value`
 
 
 ## Responses
@@ -22,14 +22,14 @@ Easy License ESET Antivirus
 			'username'=> 'your-username',
 			'password'=> 'your-password',
 			'file_server'=> 'your-file-server',
-			'ftp' => [
+			'ftp' => {
 			    'server'=> 'ftp-host-name',
 			    'path'=> 'ftp-host-path',
-			],
-			'ftp2' => [
+			},
+			'ftp2' => {
 			    'username'=> 'ftp2-username',
 			    'password'=> 'ftp2-password',
-			] 
+			} 
 		} 
 
 * Validation Response
