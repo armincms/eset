@@ -18,7 +18,7 @@ Easy License ESET Antivirus
 ## Responses
 * Setting Response
 
-		`{
+		{
 			'username'=> 'your-username',
 			'password'=> 'your-password',
 			'file_server'=> 'your-file-server',
@@ -30,11 +30,11 @@ Easy License ESET Antivirus
 			    'username'=> 'ftp2-username',
 			    'password'=> 'ftp2-password',
 			] 
-		}` 
+		} 
 
 * Validation Response
 
-		`{
+		{
 			'username'  => 'license-username',
 			'password'  => 'license-password', 
 			'expiresOn' => 'expiration-date',
@@ -46,16 +46,16 @@ Easy License ESET Antivirus
 			'failServer'=> 'your-fail-server',
 			'servers'   => 'array-of-avaialble-servers', 
 			'serials'   => 'array-of-user-serials', 
-		}`
+		}
 
 * Device Response
 
-		`{ 
+		{ 
 			'expiresOn' => 'expiration-date', 
 			'daysLeft'  => 'days-left', 
 			'inUse'     => 'in-use-users', 
 			'available' => 'available-user', 
-		}`
+		}
 
 ## Http response codes
 
