@@ -6,14 +6,14 @@ use Armincms\EasyLicense\Credit;
 
 class Builder
 {  
-    static $usernamePrefix = 'eav';
+   static $usernamePrefix = 'eav';
 
-   static public function build($access = null, $fields = [])
+   static public function build()
    {   
         return [
-            'username'  => array_get($fields, 'username') ?: self::username(),
-            'password'  => array_get($fields, 'password') ?: self::password(),
-            'key'       => array_get($fields, 'key') ?: self::key(), 
+            'username'  => self::username(),
+            'password'  => self::password(),
+            'key'       => self::key(), 
         ];   
    }
 
@@ -51,39 +51,39 @@ class Builder
       return Credit::where('data->'. $column, $value)->count() === 0;
    }
 
-   static public function ess($access = null, $fields = [])
+   static public function ess()
    {
       self::$usernamePrefix = 'ess';
-      return self::build($access, $fields);
+      return self::build();
    }
 
-   static public function essp($access = null, $fields = [])
+   static public function essp()
    {
       self::$usernamePrefix = 'essp';
-      return self::build($access, $fields);
+      return self::build();
    }
 
-   static public function eis($access = null, $fields = [])
+   static public function eis()
    {
       self::$usernamePrefix = 'eis';
-      return self::build($access, $fields);
+      return self::build();
    }
 
-   static public function eav($access = null, $fields = [])
+   static public function eav()
    {
       self::$usernamePrefix = 'eav';
-      return self::build($access, $fields);
+      return self::build();
    }
 
-   static public function eea($access = null, $fields = [])
+   static public function eea()
    {
       self::$usernamePrefix = 'eea';
-      return self::build($access, $fields);
+      return self::build();
    }
 
-   static public function ees($access = null, $fields = [])
+   static public function ees()
    {
       self::$usernamePrefix = 'ees';
-   		return self::build($access, $fields);
+   		return self::build();
    }
 }
