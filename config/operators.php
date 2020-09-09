@@ -1,4 +1,7 @@
-<?php return [ 
+<?php 
+use Armincms\Eset\Builder;
+
+return [ 
     'title' => 'ESET',
     'drivers' => [
         'eav' => [ 
@@ -6,42 +9,42 @@
             'fields'  => [
                 'username', 'password', 'key'
             ],
-            'builder' => [EsetBuilder::class, 'eav'],
+            'builder' => [Builder::class, 'eav'],
         ], 
         'ess' => [ 
             'title' => 'Eset Smart Security',
             'fields'  => [
                 'username', 'password', 'key'
             ],
-            'builder' => [EsetBuilder::class, 'ess'],
+            'builder' => [Builder::class, 'ess'],
         ], 
         'essp' => [ 
             'title' => 'Eset Smart Security Premium',
             'fields'  => [
                 'username', 'password', 'key'
             ],
-            'builder' => [EsetBuilder::class, 'essp'],
+            'builder' => [Builder::class, 'essp'],
         ], 
         'eis' => [ 
             'title' => 'Eset Internet Security',
             'fields'  => [
                 'username', 'password', 'key'
             ],
-            'builder' => [EsetBuilder::class, 'eis'],
+            'builder' => [Builder::class, 'eis'],
         ],
         'eea' => [ 
             'title' => 'Eset Endpoint antivirus',
             'fields'  => [
                 'username', 'password', 'key'
             ],
-            'builder' => [EsetBuilder::class, 'eea'],
+            'builder' => [Builder::class, 'eea'],
         ] ,
         'ees' => [ 
             'title' => 'Eset Endpoint Security',
             'fields'  => [
                 'username', 'password', 'key'
             ],
-            'builder' => [EsetBuilder::class, 'ees'],
+            'builder' => [Builder::class, 'ees'],
         ] 
     ],
 ];
