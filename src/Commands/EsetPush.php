@@ -50,7 +50,7 @@ class EsetPush extends Command
                 ]);
             }
         ])
-        // ->whereNotNull('expires_on')
+        ->whereNotNull('expires_on')
         ->get()
         ->reject->isExpired()
         ->groupBy('license.product.driver')
