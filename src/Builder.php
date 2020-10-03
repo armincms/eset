@@ -41,7 +41,8 @@ class Builder
 
    static public function validCodeString()
    {
-   		$code = substr(md5(time()), 0 , 20); 
+        $start = rand(0, 5);
+   	    $code = substr(md5(time()), $start , $start + 20); 
 
         return str_replace('0', 'o', $code);
    }
