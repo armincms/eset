@@ -109,7 +109,7 @@ class Eset extends Resource
     {
         return array_merge(
             Json::make('ftp', [
-                Url::make(__('Host Name'), 'host')
+                Text::make(__('Host Name'), 'host')
                     ->required()
                     ->rules('required'),
 
@@ -166,5 +166,21 @@ class Eset extends Resource
                     return is_array($value) ? $value : (array) json_decode($value, true);
                 }),
         ];
+    }
+
+    public static function ftp($driver)
+    {
+        return (array) data_get(static::getDriverConfig($driver, 'eset_ftp'), 'ftp');   
+    }
+
+    public static function getDriverConfig($driver, $key)
+    {
+        return collect(static::option($key))
+                ->whereIn('layout', ['default', $driver])
+                ->sortBy(function($layout) use ($driver) {
+                    return $layout['layout'] === $driver ?: time();
+                })
+                ->map->attributes
+                ->pop(); 
     }
 }
