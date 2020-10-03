@@ -134,7 +134,13 @@ class Eset extends Resource
                     ->withMeta(['value' => 21]),
 
                 Number::make('Timeout')
-                    ->withMeta(['value' => 30])
+                    ->withMeta(['value' => 30]),
+
+                Boolean::make('ssl')
+                    ->withMeta(['value' => false]),
+
+                Boolean::make('passive')
+                    ->withMeta(['value' => true]),
             ])->ignoreCasting()->toArray(),
 
             [Heading::make('FTP2', 'heading')], 
