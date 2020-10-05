@@ -20,16 +20,7 @@ class EsetPush extends Command
      *
      * @var string
      */
-    protected $description = 'Push the licneses into the update servers'; 
-
-    protected $options = [];
-
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->options = Eset::options();
-    }
+    protected $description = 'Push the licneses into the update servers';  
 
     /**
      * Execute the console command.
