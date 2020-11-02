@@ -45,6 +45,13 @@ return [
                 'username', 'password', 'key'
             ],
             'builder' => [Builder::class, 'ees'],
+        ],
+        'ees' => [ 
+            'title' => 'Eset Network Client',
+            'fields'  => [
+                'username', 'password', 'key'
+            ],
+            'builder' => [Builder::class, 'eint'],
         ] 
     ],
 ];
