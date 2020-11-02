@@ -84,6 +84,12 @@ class Builder
    static public function ees()
    {
       self::$usernamePrefix = 'ees';
-   		return self::build();
+   	return self::build();
+   }
+
+   static public function eint()
+   {
+      self::$usernamePrefix = 'eint';
+   	return self::build();
    }
 }
