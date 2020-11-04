@@ -45,6 +45,22 @@ return [
                 'username', 'password', 'key'
             ],
             'builder' => [Builder::class, 'ees'],
+        ], 
+        'eeas' => [ 
+            'title' => 'Eset Endpoint antivirus (Server)',
+            'fields'  => [
+                'username', 'password', 'key'
+            ],
+            'builder' => [Builder::class, 'eea'],
+            'parent' => 'eea',
+        ] ,
+        'eess' => [ 
+            'title' => 'Eset Endpoint Security (Server)',
+            'fields'  => [
+                'username', 'password', 'key'
+            ],
+            'builder' => [Builder::class, 'ees'],
+            'parent' => 'ees',
         ],
         'eint' => [ 
             'title' => 'Eset Network Client',
