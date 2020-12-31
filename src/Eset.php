@@ -36,13 +36,9 @@ class Eset extends Resource
             (new Panel(__('License'), [
                 Heading::make(__('The original license information here'), 'license'),
 
-                Text::make('Username', 'eset_original_username')
-                    ->required()
-                    ->rules('required'),
+                Text::make('Username', 'eset_original_username'),
 
-                Text::make('Password', 'eset_original_password')
-                    ->required()
-                    ->rules('required'),
+                Text::make('Password', 'eset_original_password'),
             ]))->withToolbar(),
 
             (new Panel('API', [
@@ -136,11 +132,9 @@ class Eset extends Resource
                 Number::make('Timeout')
                     ->withMeta(['value' => 30]),
 
-                Boolean::make('ssl')
-                    ->withMeta(['value' => false]),
+                Boolean::make('ssl'),
 
-                Boolean::make('passive')
-                    ->withMeta(['value' => true]),
+                Boolean::make('passive'),
             ])->ignoreCasting()->toArray(),
 
             [Heading::make('FTP2', 'heading')], 
