@@ -47,7 +47,7 @@ class Eset extends Resource
                 Text::make('API Key', 'eset_apikey')
                     ->required()
                     ->rules('required')
-                    ->withMeta(['value' => md5(time())]),
+                    ->withMeta(['value' => static::option('eset_apikey') ?: md5(time())]),
 
                 Select::make(__('Domain'), 'eset_domain') 
                     ->required()
